@@ -1,0 +1,38 @@
+# Credenciales y configuración local
+.env
+.env.*
+!.env.example
+
+# Entornos y cachés de Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Datos operativos y bases locales
+*.sqlite
+*.sqlite3
+*.db
+datos/
+data/
+media/
+
+# Archivos generados
+staticfiles/
+dist/
+build/
+*.log
+*.tmp
+*.bak
+
+# IDE y sistema operativo
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

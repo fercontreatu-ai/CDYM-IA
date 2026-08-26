@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}CDYM IA — Red CENS{% endblock %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/static/css/app.css?v=responsive-postoperativo-124">
+</head>
+<body>
+  <header><strong>CDYM IA · Red CENS de 13,8 y 34,5 kV · Entorno experimental</strong></header>
+  {% block content %}{% endblock %}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  {% block scripts %}{% endblock %}
+  <script src="/static/js/kmz.js?v=kmz-layer-1"></script>
+</body>
+</html>
