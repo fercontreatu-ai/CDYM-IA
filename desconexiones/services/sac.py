@@ -1,9 +1,17 @@
 from __future__ import annotations
 
+import copy
 import os
+import threading
+import time
 from contextlib import contextmanager
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
+
+
+_SAC_CACHE: dict[tuple[str, ...], tuple[float, tuple]] = {}
+_SAC_CACHE_LOCK = threading.RLock()
+_SAC_CACHE_SECONDS = int(os.getenv("SAC_CACHE_SECONDS", "600"))
 
 
 class SacService:
@@ -56,6 +64,11 @@ class SacService:
         codes = sorted({str(code).strip().upper() for code in codigos if str(code).strip()})
         if not codes:
             return {}, {}, {}
+        cache_key = tuple(codes)
+        with _SAC_CACHE_LOCK:
+            cached = _SAC_CACHE.get(cache_key)
+            if cached and time.monotonic() - cached[0] < _SAC_CACHE_SECONDS:
+                return copy.deepcopy(cached[1])
 
         users_by_transformer: dict[str, list[dict]] = {code: [] for code in codes}
         excluded_by_transformer: dict[str, int] = {code: 0 for code in codes}
@@ -72,6 +85,8 @@ class SacService:
                 ("ESTADO_TRANSFORMADOR", "ESTADO", "ESTADO_ACTIVO", "ACTIVO"),
             )
             estado_expr = estado_col or "NULL"
+            cur.execute("SELECT MAX(FECHA) FROM SAC_BI.VAL_CLIENTES@SAC")
+            cutoff = cur.fetchone()[0]
             for start in range(0, len(codes), 500):
                 batch = codes[start:start + 500]
                 binds = ",".join(f":t{i}" for i in range(len(batch)))
@@ -96,8 +111,6 @@ class SacService:
                         "transformador_id_sac": int(transformer_id) if transformer_id is not None else None,
                     }
 
-                cur.execute("SELECT MAX(FECHA) FROM SAC_BI.VAL_CLIENTES@SAC")
-                cutoff = cur.fetchone()[0]
                 sql = f"""
                     SELECT CODIGO_UBIC_TRANSFORMADOR, CLIENTE_ID, COMERCIALIZADOR, OPERADOR_RED, ESTADO_CLIENTE, ESTADO_SUMINISTRO, NOMBRE, DIRECCION, FECHA_FACTURACION_ACT, FECHA_LECTURA_ACT
                     FROM SAC_BI.VAL_CLIENTES@SAC
@@ -128,7 +141,13 @@ class SacService:
                 "comercializador_nombre": "Sin identificar",
                 "comercializador_cens": False,
             }))
-        return users_by_transformer, excluded_by_transformer, transformer_status
+        resultado = (users_by_transformer, excluded_by_transformer, transformer_status)
+        with _SAC_CACHE_LOCK:
+            _SAC_CACHE[cache_key] = (time.monotonic(), copy.deepcopy(resultado))
+            if len(_SAC_CACHE) > 128:
+                oldest = min(_SAC_CACHE, key=lambda item: _SAC_CACHE[item][0])
+                _SAC_CACHE.pop(oldest, None)
+        return resultado
 
     @staticmethod
     def _fecha_juliana(valor):

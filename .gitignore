@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+.cdym-local.json
 
 # Entornos y cachés de Python
 .venv/
@@ -18,9 +19,13 @@ __pycache__/
 *.sqlite
 *.sqlite3
 *.db
-datos/
 data/
 media/
+datos/comparaciones/
+datos/circuitos/
+
+# Herramienta local para reconstruir la base reducida
+generar_base_alimentadores_reducida.py
 
 # Archivos generados
 staticfiles/

@@ -16,11 +16,42 @@ from .services.medidas import cargar_catalogo, medidas_subestacion, coincidencia
 from .services.series_medidas import SeriesMedidasService, VARIABLES
 from .services.sets_proteccion import set_sugerido
 from .services.kmz import leer_kmz
+from .services.configuracion_local import estado_carpeta_scada, guardar_carpeta_scada
 from .models import AsignacionMedidaEnergia, RelacionBarraTransformacion, RamalTransformadorManual, GrupoTransformadorBarra, BarraGrupoTransformador, CatalogoConductorCens, ConfiguracionTendidoCircuito, EstadoOperativoVigente, ParaleloCeldaPermitido, ConfiguracionManiobras, AprendizajeProtocolo, EventoAprendizajeProtocolo, PerfilAprendizajeManiobras
 from .services.ia.aprendizaje import reconstruir_preferencias
 
 CIRCUITOS_DIR = Path(settings.DATA_DIR) / "circuitos"
 _CIRCUITOS_CACHE_LOCK = threading.RLock()
+
+
+@require_GET
+def api_admin_configuracion_scada(request):
+    return JsonResponse(estado_carpeta_scada())
+
+
+@require_POST
+def api_admin_seleccionar_carpeta_scada(request):
+    try:
+        data = json.loads(request.body or "{}")
+        if data.get("seleccionar"):
+            try:
+                import tkinter as tk
+                from tkinter import filedialog
+                raiz = tk.Tk()
+                raiz.withdraw()
+                raiz.attributes("-topmost", True)
+                inicial = estado_carpeta_scada().get("ruta") or str(Path.home())
+                carpeta = filedialog.askdirectory(parent=raiz, initialdir=inicial, title="Seleccione la carpeta raíz de datos SCADA")
+                raiz.destroy()
+            except Exception as exc:
+                return JsonResponse({"error": f"No fue posible abrir el selector de Windows: {exc}"}, status=400)
+            if not carpeta:
+                return JsonResponse({"cancelado": True, **estado_carpeta_scada()})
+        else:
+            carpeta = str(data.get("ruta") or "")
+        return JsonResponse({"guardada": True, **guardar_carpeta_scada(carpeta)})
+    except (ValueError, OSError, json.JSONDecodeError) as exc:
+        return JsonResponse({"error": str(exc)}, status=400)
 
 def _archivo_circuito(subestacion, fid):
     codigo = "".join(c for c in subestacion.upper() if c.isalnum() or c in "-_")
@@ -561,10 +592,13 @@ def api_grafica_medidas(request):
             fecha = servicio.validar_fecha(seleccion_historica["fecha"])
         else:
             fecha = servicio.validar_fecha(request.GET.get("fecha")) or servicio.validar_fecha(fecha_maxima)
-        alimentador = servicio.serie_dia(_datos_medida(asignacion), fecha, VARIABLES[variable])
-        alimentador_potencias = alimentador if variable == "POTENCIAS" else servicio.serie_dia(_datos_medida(asignacion), fecha, VARIABLES["POTENCIAS"])
-        alimentador_corrientes = alimentador if variable == "CORRIENTE" else servicio.serie_dia(_datos_medida(asignacion), fecha, VARIABLES["CORRIENTE"])
-        alimentador_voltajes = alimentador if variable == "VOLTAJE" else servicio.serie_dia(_datos_medida(asignacion), fecha, VARIABLES["VOLTAJE"])
+        medida_alimentador = _datos_medida(asignacion)
+        if seleccion_historica and seleccion_historica.get("fuente"):
+            medida_alimentador = {**medida_alimentador, "medida_fuente": seleccion_historica["fuente"]}
+        alimentador = servicio.serie_dia(medida_alimentador, fecha, VARIABLES[variable])
+        alimentador_potencias = alimentador if variable == "POTENCIAS" else servicio.serie_dia(medida_alimentador, fecha, VARIABLES["POTENCIAS"])
+        alimentador_corrientes = alimentador if variable == "CORRIENTE" else servicio.serie_dia(medida_alimentador, fecha, VARIABLES["CORRIENTE"])
+        alimentador_voltajes = alimentador if variable == "VOLTAJE" else servicio.serie_dia(medida_alimentador, fecha, VARIABLES["VOLTAJE"])
         _corregir_escala_potencias(alimentador_potencias, alimentador_corrientes, alimentador_voltajes)
         alimentador,alimentador_potencias,alimentador_corrientes,alimentador_voltajes,nodo_345=_aplicar_nodo_patios(request,servicio,alimentador_fid,fecha,modo,variable,alimentador,alimentador_potencias,alimentador_corrientes,alimentador_voltajes)
         solo_alimentador = request.GET.get("solo_alimentador", "").lower() in {"1", "true", "si", "sí"}

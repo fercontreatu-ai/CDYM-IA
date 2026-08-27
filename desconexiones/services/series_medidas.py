@@ -5,6 +5,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from django.conf import settings
+from .scada_archivos import serie_dia_scada
 
 
 VARIABLES = {
@@ -44,6 +45,11 @@ class SeriesMedidasService:
             first = cur.fetchone()
             cur.execute("SELECT fecha FROM mediciones ORDER BY fecha_hora DESC LIMIT 1")
             last = cur.fetchone()
+            if not first or not last:
+                cur.execute("SELECT MIN(fecha),MAX(fecha) FROM seleccion_dia_reducido")
+                rango = cur.fetchone()
+                if rango and rango[0] and rango[1]:
+                    return str(rango[0]), str(rango[1])
         if not first or not last:
             raise ValueError("La base de medidas está vacía.")
         return str(first[0]), str(last[0])
@@ -86,12 +92,43 @@ class SeriesMedidasService:
         if tipo not in {"FESTIVO","ORDINARIO"}:
             raise ValueError("Seleccione festivo u ordinario.")
         delta=float(delta_porcentaje)
-        if delta<0 or delta>1000:
-            raise ValueError("El delta debe estar entre 0% y 1000%.")
+        if delta<5 or delta>60 or delta%5:
+            raise ValueError("El delta debe estar entre 5% y 60%, en pasos de 5%.")
         subestacion=str(medida.get("medida_subestacion") or "").strip().upper()
         dispositivo=str(medida.get("medida_dispositivo") or "").strip().upper()
         fuente_solicitada=str(medida.get("medida_fuente") or "").strip().upper()
         with self.connection() as conn:
+            reducida=conn.execute(
+                "SELECT 1 FROM sqlite_master WHERE type='table' AND name='seleccion_dia_reducido'"
+            ).fetchone()
+            if reducida:
+                categorias=("LUNES_ORDINARIO","MARTES_ORDINARIO","MIERCOLES_ORDINARIO",
+                            "JUEVES_ORDINARIO","VIERNES_ORDINARIO","SABADO_ORDINARIO")
+                categoria="FESTIVO" if tipo=="FESTIVO" else categorias[dia_semana]
+                fila=conn.execute(
+                    "SELECT fecha,fuente,carga_maxima_a,delta_maximo_observado_pct,"
+                    "factor_escala_potencia,factor_potencia_mediano,"
+                    "correlacion_kv_a_potencia,calidad_correlacion "
+                    "FROM seleccion_dia_reducido WHERE upper(subestacion)=? "
+                    "AND upper(interruptor)=? AND categoria=? AND delta_pct=?",
+                    (subestacion,dispositivo,categoria,int(delta)),
+                ).fetchone()
+                if not fila:
+                    raise ValueError(
+                        f"La base reducida no tiene un día válido para {dispositivo}, "
+                        f"{categoria.lower()}, delta {delta:g}%."
+                    )
+                return {
+                    "fecha":str(fila[0]),"fuente":str(fila[1] or ""),
+                    "carga_maxima_a":float(fila[2]),"delta_maximo_pct":float(fila[3]),
+                    "factor_escala_potencia":float(fila[4]),
+                    "factor_potencia_mediano":fila[5],
+                    "correlacion_kv_a_potencia":fila[6],"calidad_correlacion":fila[7],
+                    "tipo_dia":tipo,"categoria":categoria,"dia_semana":dia_semana,
+                    "delta_configurado_pct":delta,"dias_evaluados":1,
+                    "descartados_delta":0,"descartados_incompletos":0,
+                    "origen_seleccion":"BASE_REDUCIDA",
+                }
             rows=conn.execute(
                 'SELECT fecha,fecha_hora,fuente,"IR","IS","IT" FROM mediciones '
                 'WHERE subestacion=? AND interruptor=? ORDER BY fecha_hora',
@@ -166,6 +203,8 @@ class SeriesMedidasService:
         fuentes = {str(row[1] or "").upper() for row in rows}
         fuente = fuente_solicitada if fuente_solicitada in fuentes else next((x for x in PRIORIDAD_FUENTE if x in fuentes), "")
         rows = [row for row in rows if str(row[1] or "").upper() == fuente]
+        if not rows:
+            return serie_dia_scada(medida, fecha, campos, UNIDADES)
         series = []
         for index, (name, label) in enumerate(campos, start=2):
             es_potencia = name in {"P", "Q", "S"}

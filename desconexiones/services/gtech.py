@@ -15,6 +15,26 @@ FNO_CORTE = {18800, 19300, 19400, 19600, 19700, 19800, 20400}
 _TRACE_CACHE = {}
 _TRACE_CACHE_LOCK = threading.RLock()
 _TRACE_CACHE_SECONDS = 600
+_CATALOG_CACHE = {}
+_CATALOG_CACHE_LOCK = threading.RLock()
+_CATALOG_CACHE_SECONDS = int(os.getenv("GTECH_CATALOG_CACHE_SECONDS", "600"))
+
+
+def _catalog_cache_get(key):
+    with _CATALOG_CACHE_LOCK:
+        cached = _CATALOG_CACHE.get(key)
+        if cached and time.monotonic() - cached[0] < _CATALOG_CACHE_SECONDS:
+            return copy.deepcopy(cached[1])
+    return None
+
+
+def _catalog_cache_set(key, value):
+    with _CATALOG_CACHE_LOCK:
+        _CATALOG_CACHE[key] = (time.monotonic(), copy.deepcopy(value))
+        if len(_CATALOG_CACHE) > 256:
+            oldest = min(_CATALOG_CACHE, key=lambda item: _CATALOG_CACHE[item][0])
+            _CATALOG_CACHE.pop(oldest, None)
+    return value
 
 
 class GTechService:
@@ -42,20 +62,31 @@ class GTechService:
             conn.close()
 
     def listar_subestaciones(self) -> list[dict]:
+        cache_key = ("subestaciones",)
+        cached = _catalog_cache_get(cache_key)
+        if cached is not None:
+            return cached
         sql = f"""SELECT DISTINCT UPPER(TRIM(S.CODIGO)) FROM {self.q('ESUBESTA_AT')} S JOIN {self.q('CCOMUN')} M ON M.G3E_FID=S.G3E_FID WHERE M.EMPRESA_ORIGEN='CENS' AND S.CODIGO IS NOT NULL ORDER BY 1"""
         with self.connection() as conn:
             cur = conn.cursor(); cur.execute(sql)
-            return [{"codigo": str(r[0]).strip().upper()} for r in cur.fetchall()]
+            return _catalog_cache_set(cache_key, [{"codigo": str(r[0]).strip().upper()} for r in cur.fetchall()])
 
     def listar_interruptores(self, subestacion: str, circuito: str = "") -> list[dict]:
+        sub_normalizada = subestacion.strip().upper().replace(" ", "_")
+        circuito_normalizado = circuito.strip().upper()
+        cache_key = ("interruptores", sub_normalizada, circuito_normalizado)
+        cached = _catalog_cache_get(cache_key)
+        if cached is not None:
+            return cached
         filtros = ["M.EMPRESA_ORIGEN='CENS'", "C.G3E_FNO=18800", "REPLACE(TRIM(C.TENSION),',','.') IN ('13.8','34.5')", f"{self._subestacion_normalizada('C.SUBESTACION')}=:sub"]
-        params = {"sub": subestacion.strip().upper().replace(" ", "_")}
+        params = {"sub": sub_normalizada}
         if circuito:
             filtros.append("UPPER(TRIM(C.CIRCUITO))=:cto"); params["cto"] = circuito.strip().upper()
         sql = f"""SELECT C.G3E_FID,NVL(TRIM(M.CODIGO_OPERATIVO),TO_CHAR(C.G3E_FID)),UPPER(TRIM(C.SUBESTACION)),UPPER(TRIM(C.CIRCUITO)),NVL(TRIM(C.EST_OPERATIVO),''),NVL(TRIM(M.CODIGO_MARCACION),''),C.NODO1_ID,C.NODO2_ID,REPLACE(TRIM(C.TENSION),',','.') FROM {self.q('CCONECTIVIDAD_E')} C JOIN {self.q('CCOMUN')} M ON M.G3E_FID=C.G3E_FID WHERE {' AND '.join(filtros)} ORDER BY TO_NUMBER(REPLACE(TRIM(C.TENSION),',','.')) DESC,4,2"""
         with self.connection() as conn:
             cur = conn.cursor(); cur.execute(sql, params)
-            return [{"g3e_fid": int(r[0]), "codigo": str(r[1]).strip(), "subestacion": str(r[2]).strip(), "circuito": str(r[3] or "SIN CIRCUITO").strip(), "estado": str(r[4]).strip().upper(), "marcacion": str(r[5]).strip(), "nodo1": int(r[6] or 0), "nodo2": int(r[7] or 0), "tension": str(r[8]).strip()} for r in cur.fetchall()]
+            resultado = [{"g3e_fid": int(r[0]), "codigo": str(r[1]).strip(), "subestacion": str(r[2]).strip(), "circuito": str(r[3] or "SIN CIRCUITO").strip(), "estado": str(r[4]).strip().upper(), "marcacion": str(r[5]).strip(), "nodo1": int(r[6] or 0), "nodo2": int(r[7] or 0), "tension": str(r[8]).strip()} for r in cur.fetchall()]
+            return _catalog_cache_set(cache_key, resultado)
 
     def listar_circuitos(self, subestacion: str) -> list[dict]:
         interruptores=self.listar_interruptores(subestacion)
@@ -65,6 +96,10 @@ class GTechService:
 
     def listar_barras_dispositivos(self, subestacion: str) -> list[dict]:
         subestacion=subestacion.strip().upper().replace(" ", "_")
+        cache_key = ("barras", subestacion)
+        cached = _catalog_cache_get(cache_key)
+        if cached is not None:
+            return cached
         with self.connection() as conn:
             cur=conn.cursor()
             cur.arraysize=2000;cur.prefetchrows=2000
@@ -84,7 +119,7 @@ class GTechService:
         for barra in barras:
             bn=set(barra["nodos"])
             barra["dispositivos"]=sorted((d for d in unicos.values() if bn.intersection(d["nodos"])),key=lambda d:(d["g3e_fno"],d["circuito"],d["codigo"]))
-        return barras
+        return _catalog_cache_set(cache_key, barras)
 
     @staticmethod
     def _fila(r) -> dict:

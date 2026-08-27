@@ -1,0 +1,2784 @@
+{
+  "alimentadores": {
+    "AGUC1": {
+      "codigo": "AGUC1",
+      "set_a": 900.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 3
+    },
+    "AGUC2": {
+      "codigo": "AGUC2",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 4
+    },
+    "AGUC3": {
+      "codigo": "AGUC3",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 5
+    },
+    "AGUC4": {
+      "codigo": "AGUC4",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 6
+    },
+    "AGUC5": {
+      "codigo": "AGUC5",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 7
+    },
+    "AGUC6": {
+      "codigo": "AGUC6",
+      "set_a": 804.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 8
+    },
+    "AGUC7": {
+      "codigo": "AGUC7",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 9
+    },
+    "AGUC8": {
+      "codigo": "AGUC8",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 10
+    },
+    "AGUCAUX": {
+      "codigo": "AGUCAUX",
+      "set_a": 30.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 11
+    },
+    "ATAIB85": {
+      "codigo": "ATAIB85",
+      "set_a": 940.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 18
+    },
+    "ATAIB86": {
+      "codigo": "ATAIB86",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 19
+    },
+    "ATAIB87": {
+      "codigo": "ATAIB87",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 20
+    },
+    "ATAIB88": {
+      "codigo": "ATAIB88",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 21
+    },
+    "AYAC1": {
+      "codigo": "AYAC1",
+      "set_a": 50.4,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 25
+    },
+    "AYAC2": {
+      "codigo": "AYAC2",
+      "set_a": 96.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 26
+    },
+    "AYAQ200": {
+      "codigo": "AYAQ200",
+      "set_a": 129.6,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 27
+    },
+    "BELC21": {
+      "codigo": "BELC21",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 31
+    },
+    "BELC22": {
+      "codigo": "BELC22",
+      "set_a": 456.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 32
+    },
+    "BELC23": {
+      "codigo": "BELC23",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 35
+    },
+    "BELC24": {
+      "codigo": "BELC24",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 36
+    },
+    "BELC27": {
+      "codigo": "BELC27",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 37
+    },
+    "BELC28": {
+      "codigo": "BELC28",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 38
+    },
+    "BELC29": {
+      "codigo": "BELC29",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 39
+    },
+    "BELC30": {
+      "codigo": "BELC30",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 40
+    },
+    "BELC31": {
+      "codigo": "BELC31",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 41
+    },
+    "BELC40": {
+      "codigo": "BELC40",
+      "set_a": 1200.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 49
+    },
+    "BELC70": {
+      "codigo": "BELC70",
+      "set_a": 1600.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 52
+    },
+    "BELCACO": {
+      "codigo": "BELCACO",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 54
+    },
+    "BELCAUX": {
+      "codigo": "BELCAUX",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 55
+    },
+    "CONPPAL": {
+      "codigo": "CONPPAL",
+      "set_a": 352.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 66
+    },
+    "CONSALCARMEN": {
+      "codigo": "CONSAL_CARMEN",
+      "set_a": 90.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 73
+    },
+    "CONSALCONVE": {
+      "codigo": "CONSAL_CONVE",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 74
+    },
+    "CONSALTEORA": {
+      "codigo": "CONSAL_TEORA",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 75
+    },
+    "CONSAUX": {
+      "codigo": "CONSAUX",
+      "set_a": 30.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 76
+    },
+    "ESCC60": {
+      "codigo": "ESCC60",
+      "set_a": 560.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 77
+    },
+    "GAM5T220": {
+      "codigo": "GAM_5T220",
+      "set_a": 504.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 79
+    },
+    "GRA5T220": {
+      "codigo": "GRA_5T220",
+      "set_a": 249.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 81
+    },
+    "INSC90": {
+      "codigo": "INSC90",
+      "set_a": 1044.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 85
+    },
+    "INSC91": {
+      "codigo": "INSC91",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 86
+    },
+    "INSC92": {
+      "codigo": "INSC92",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 87
+    },
+    "INSC93": {
+      "codigo": "INSC93",
+      "set_a": 330.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 88
+    },
+    "INSC94": {
+      "codigo": "INSC94",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 89
+    },
+    "OCAGONZALES": {
+      "codigo": "OCAGONZALES",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 99
+    },
+    "OCALAPLAYA": {
+      "codigo": "OCALA_PLAYA",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 109
+    },
+    "OCAOCANA1": {
+      "codigo": "OCAOCANA1",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 110
+    },
+    "OCAOCANA2": {
+      "codigo": "OCAOCANA2",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 111
+    },
+    "OCAOCANA3": {
+      "codigo": "OCAOCANA3",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 112
+    },
+    "OCAPPAL": {
+      "codigo": "OCAPPAL",
+      "set_a": 1250.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 113
+    },
+    "PALBOCHALEMA": {
+      "codigo": "PALBOCHALEMA",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 115
+    },
+    "PALCHINACOTA": {
+      "codigo": "PALCHINACOTA",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 116
+    },
+    "PALDONJUANA": {
+      "codigo": "PALDONJUANA",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 117
+    },
+    "PALIPAL02": {
+      "codigo": "PALIPAL02",
+      "set_a": 536.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 120
+    },
+    "PALRAGONVALIA": {
+      "codigo": "PALRAGONVALIA",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 121
+    },
+    "PAMC1": {
+      "codigo": "PAMC1",
+      "set_a": 575.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 123
+    },
+    "PAMC2": {
+      "codigo": "PAMC2",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 124
+    },
+    "PAMC3": {
+      "codigo": "PAMC3",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 125
+    },
+    "PAMC4": {
+      "codigo": "PAMC4",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 126
+    },
+    "PATIOS": {
+      "codigo": "PATIOS",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 129
+    },
+    "PLZAUX": {
+      "codigo": "PLZAUX",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 130
+    },
+    "PLZ263B1": {
+      "codigo": "PLZ263B1",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 131
+    },
+    "PLZ283B1": {
+      "codigo": "PLZ283B1",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 132
+    },
+    "PLZ273B1": {
+      "codigo": "PLZ273B1",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 133
+    },
+    "PLZ306": {
+      "codigo": "PLZ306",
+      "set_a": 504.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 134
+    },
+    "SANC40": {
+      "codigo": "SANC40",
+      "set_a": 1675.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 142
+    },
+    "SANC42": {
+      "codigo": "SANC42",
+      "set_a": 1200.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 143
+    },
+    "SANC43": {
+      "codigo": "SANC43",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 144
+    },
+    "SANC45": {
+      "codigo": "SANC45",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 145
+    },
+    "SANC46": {
+      "codigo": "SANC46",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 146
+    },
+    "SANC48": {
+      "codigo": "SANC48",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 147
+    },
+    "SANC49": {
+      "codigo": "SANC49",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 148
+    },
+    "SANC51": {
+      "codigo": "SANC51",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 149
+    },
+    "SANC52": {
+      "codigo": "SANC52",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 150
+    },
+    "SANC53": {
+      "codigo": "SANC53",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 151
+    },
+    "SANC54": {
+      "codigo": "SANC54",
+      "set_a": 432.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 152
+    },
+    "SANC55": {
+      "codigo": "SANC55",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 153
+    },
+    "SANC56": {
+      "codigo": "SANC56",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 154
+    },
+    "SANC57": {
+      "codigo": "SANC57",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 155
+    },
+    "SANC58": {
+      "codigo": "SANC58",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 156
+    },
+    "SANC59": {
+      "codigo": "SANC59",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 157
+    },
+    "SANC80": {
+      "codigo": "SANC80",
+      "set_a": 1296.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 158
+    },
+    "SEVC1": {
+      "codigo": "SEVC1",
+      "set_a": 1440.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 177
+    },
+    "SEVC11": {
+      "codigo": "SEVC11",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 178
+    },
+    "SEVC16": {
+      "codigo": "SEVC16",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 179
+    },
+    "SEVC17": {
+      "codigo": "SEVC17",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 180
+    },
+    "SEVC19": {
+      "codigo": "SEVC19",
+      "set_a": 90.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 181
+    },
+    "SEVC2": {
+      "codigo": "SEVC2",
+      "set_a": 919.2,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 182
+    },
+    "SEVC3": {
+      "codigo": "SEVC3",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 183
+    },
+    "SEVC4": {
+      "codigo": "SEVC4",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 184
+    },
+    "SEVC5": {
+      "codigo": "SEVC5",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 185
+    },
+    "SEVC6": {
+      "codigo": "SEVC6",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 186
+    },
+    "SEVC7": {
+      "codigo": "SEVC7",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 187
+    },
+    "TIBPOZOS": {
+      "codigo": "TIBPOZOS",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 205
+    },
+    "TIBPPAL": {
+      "codigo": "TIBPPAL",
+      "set_a": 800.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 206
+    },
+    "TIBTIBU3": {
+      "codigo": "TIBTIBU3",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 207
+    },
+    "TIBTIBU1": {
+      "codigo": "TIBTIBU1",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 208
+    },
+    "TIBTIBU2": {
+      "codigo": "TIBTIBU2",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 209
+    },
+    "TOLLABATECA": {
+      "codigo": "TOLLABATECA",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 210
+    },
+    "TOLTOLEDO": {
+      "codigo": "TOLTOLEDO",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 212
+    },
+    "PATPPAL": {
+      "codigo": "PAT_PPAL",
+      "set_a": 540.8,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 217
+    },
+    "PATC1": {
+      "codigo": "PATC1",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 218
+    },
+    "PATC2": {
+      "codigo": "PATC2",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 219
+    },
+    "PATC3": {
+      "codigo": "PATC3",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 220
+    },
+    "CAMST92": {
+      "codigo": "CAM_ST92",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 222
+    },
+    "LAMIEL": {
+      "codigo": "LA_MIEL",
+      "set_a": 44.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 224
+    },
+    "PELAYAIT20": {
+      "codigo": "PELAYA_IT20",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 225
+    },
+    "SAMSAMORE": {
+      "codigo": "SAMSAMORE",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 227
+    },
+    "SRQPPAL": {
+      "codigo": "SRQ_PPAL",
+      "set_a": 536.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 236
+    },
+    "SRQC1": {
+      "codigo": "SRQC1",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 237
+    },
+    "SRQC2": {
+      "codigo": "SRQC2",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 238
+    },
+    "SRQC3": {
+      "codigo": "SRQC3",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 239
+    },
+    "SRQSAUX": {
+      "codigo": "SRQ_S.AUX",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 240
+    },
+    "ABRPPAL": {
+      "codigo": "ABR_PPAL",
+      "set_a": 252.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 241
+    },
+    "ABRC1": {
+      "codigo": "ABRC1",
+      "set_a": 152.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 242
+    },
+    "ABRC2": {
+      "codigo": "ABRC2",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 243
+    },
+    "ABRC3": {
+      "codigo": "ABRC3",
+      "set_a": 152.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 244
+    },
+    "TOLT140": {
+      "codigo": "TOLT140",
+      "set_a": 832.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 259
+    },
+    "SARIT40": {
+      "codigo": "SAR-IT40",
+      "set_a": 536.0,
+      "hoja": "AJUSTE DE RELES",
+      "fila": 264
+    }
+  },
+  "dispositivos_linea": {
+    "LOSMANGOS": {
+      "codigo": "LOSMANGOS",
+      "set_a": 20.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 3
+    },
+    "ARC105": {
+      "codigo": "ARC105",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 4
+    },
+    "ARC104": {
+      "codigo": "ARC104",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 5
+    },
+    "RC0260": {
+      "codigo": "RC0260",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 6
+    },
+    "ARC100": {
+      "codigo": "ARC100",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 7
+    },
+    "ARC95": {
+      "codigo": "ARC95",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 8
+    },
+    "ARC94": {
+      "codigo": "ARC94",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 9
+    },
+    "GRC101": {
+      "codigo": "GRC101",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 10
+    },
+    "BRC18": {
+      "codigo": "BRC18",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 12
+    },
+    "BRC105": {
+      "codigo": "BRC105",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 13
+    },
+    "R335": {
+      "codigo": "R335",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 14
+    },
+    "RC0010": {
+      "codigo": "RC-0010",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 15
+    },
+    "ARC77": {
+      "codigo": "ARC77",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 16
+    },
+    "RC0006": {
+      "codigo": "RC-0006",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 17
+    },
+    "RC0009": {
+      "codigo": "RC-0009",
+      "set_a": 250.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 18
+    },
+    "BRC113": {
+      "codigo": "BRC113",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 19
+    },
+    "ARC84": {
+      "codigo": "ARC84",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 20
+    },
+    "PVRC1": {
+      "codigo": "PVRC1",
+      "set_a": 230.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 21
+    },
+    "BRC104": {
+      "codigo": "BRC104",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 22
+    },
+    "GRC98": {
+      "codigo": "GRC98",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 23
+    },
+    "RC0001": {
+      "codigo": "RC-0001",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 24
+    },
+    "ARC75": {
+      "codigo": "ARC75",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 25
+    },
+    "ARC97": {
+      "codigo": "ARC97",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 26
+    },
+    "ARC83": {
+      "codigo": "ARC83",
+      "set_a": 380.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 27
+    },
+    "R337": {
+      "codigo": "R337",
+      "set_a": 380.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 28
+    },
+    "GRC102": {
+      "codigo": "GRC102",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 29
+    },
+    "RC0017": {
+      "codigo": "RC-0017",
+      "set_a": 330.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 30
+    },
+    "RC0002": {
+      "codigo": "RC-0002",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 31
+    },
+    "ARC93": {
+      "codigo": "ARC93",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 32
+    },
+    "RC00010": {
+      "codigo": "RC00010",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 33
+    },
+    "RC0013": {
+      "codigo": "RC-0013",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 34
+    },
+    "RC0012": {
+      "codigo": "RC-0012",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 35
+    },
+    "BRC103": {
+      "codigo": "BRC103",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 36
+    },
+    "R273": {
+      "codigo": "R273",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 37
+    },
+    "ARC92": {
+      "codigo": "ARC92",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 38
+    },
+    "GRC100": {
+      "codigo": "GRC100",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 39
+    },
+    "RC79": {
+      "codigo": "RC79",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 40
+    },
+    "ARC76": {
+      "codigo": "ARC76",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 41
+    },
+    "BRC99": {
+      "codigo": "BRC99",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 42
+    },
+    "BRC97": {
+      "codigo": "BRC97",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 43
+    },
+    "BRC98": {
+      "codigo": "BRC98",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 44
+    },
+    "RC0259": {
+      "codigo": "RC0259",
+      "set_a": 110.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 46
+    },
+    "ARC108": {
+      "codigo": "ARC108",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 47
+    },
+    "BRC121": {
+      "codigo": "BRC121",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 48
+    },
+    "ARC106": {
+      "codigo": "ARC106",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 49
+    },
+    "ARC107": {
+      "codigo": "ARC107",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 50
+    },
+    "GRC97": {
+      "codigo": "GRC97",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 51
+    },
+    "GRC96": {
+      "codigo": "GRC96",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 52
+    },
+    "GRC94": {
+      "codigo": "GRC94",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 53
+    },
+    "ARC88": {
+      "codigo": "ARC88",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 54
+    },
+    "RC0120": {
+      "codigo": "RC-0120",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 55
+    },
+    "GRC99": {
+      "codigo": "GRC99",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 56
+    },
+    "ARC68": {
+      "codigo": "ARC68",
+      "set_a": 245.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 57
+    },
+    "R413": {
+      "codigo": "R413",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 58
+    },
+    "RC128": {
+      "codigo": "RC128",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 59
+    },
+    "BRC111": {
+      "codigo": "BRC111",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 60
+    },
+    "RC0212": {
+      "codigo": "RC0212",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 61
+    },
+    "BRC120": {
+      "codigo": "BRC120",
+      "set_a": 30.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 62
+    },
+    "TORC1": {
+      "codigo": "TORC1",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 63
+    },
+    "GRC104": {
+      "codigo": "GRC104",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 64
+    },
+    "BRC106": {
+      "codigo": "BRC106",
+      "set_a": 135.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 65
+    },
+    "R361": {
+      "codigo": "R361",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 66
+    },
+    "ERC134": {
+      "codigo": "ERC134",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 67
+    },
+    "BRC110": {
+      "codigo": "BRC110",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 68
+    },
+    "BRC114": {
+      "codigo": "BRC114",
+      "set_a": 105.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 69
+    },
+    "RC105": {
+      "codigo": "RC105",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 70
+    },
+    "FMVL1112": {
+      "codigo": "FMVL1112",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 71
+    },
+    "RC123": {
+      "codigo": "RC123",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 72
+    },
+    "BRC112": {
+      "codigo": "BRC112",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 73
+    },
+    "RC67": {
+      "codigo": "RC67",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 74
+    },
+    "ERC132": {
+      "codigo": "ERC132",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 75
+    },
+    "R278": {
+      "codigo": "R278",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 76
+    },
+    "R274": {
+      "codigo": "R274",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 78
+    },
+    "RC47": {
+      "codigo": "RC47",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 79
+    },
+    "RC4": {
+      "codigo": "RC4",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 80
+    },
+    "GRC92": {
+      "codigo": "GRC92",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 81
+    },
+    "GRC95": {
+      "codigo": "GRC95",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 82
+    },
+    "RC48": {
+      "codigo": "RC48",
+      "set_a": 30.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 83
+    },
+    "ERC133": {
+      "codigo": "ERC133",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 99
+    },
+    "SALC4": {
+      "codigo": "SALC4",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 102
+    },
+    "SALC1": {
+      "codigo": "SALC1",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 103
+    },
+    "SALC3": {
+      "codigo": "SALC3",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 104
+    },
+    "SALC2": {
+      "codigo": "SALC2",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 105
+    },
+    "ZULC2": {
+      "codigo": "ZULC2",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 106
+    },
+    "ZULC3": {
+      "codigo": "ZULC3",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 107
+    },
+    "ZULC1": {
+      "codigo": "ZULC1",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 108
+    },
+    "ELSC68": {
+      "codigo": "ELSC68",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 109
+    },
+    "ELSC69": {
+      "codigo": "ELSC69",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 110
+    },
+    "ESCC61": {
+      "codigo": "ESCC61",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 111
+    },
+    "ESCC62": {
+      "codigo": "ESCC62",
+      "set_a": 450.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 112
+    },
+    "ESCC63": {
+      "codigo": "ESCC63",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 113
+    },
+    "CORC2": {
+      "codigo": "CORC2",
+      "set_a": 90.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 114
+    },
+    "CORC3": {
+      "codigo": "CORC3",
+      "set_a": 130.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 115
+    },
+    "CORC1": {
+      "codigo": "CORC1",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 116
+    },
+    "CULC1": {
+      "codigo": "CULC1",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 117
+    },
+    "CULC2": {
+      "codigo": "CULC2",
+      "set_a": 220.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 118
+    },
+    "ATAC86": {
+      "codigo": "ATAC86",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 119
+    },
+    "ATAC87": {
+      "codigo": "ATAC87",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 120
+    },
+    "ATAC88": {
+      "codigo": "ATAC88",
+      "set_a": 400.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 121
+    },
+    "SARC2": {
+      "codigo": "SARC2",
+      "set_a": 240.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 122
+    },
+    "SARC1": {
+      "codigo": "SARC1",
+      "set_a": 210.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 123
+    },
+    "GABGABARRA": {
+      "codigo": "GABGABARRA",
+      "set_a": 170.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 124
+    },
+    "ORUC1": {
+      "codigo": "ORUC1",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 125
+    },
+    "ARC109": {
+      "codigo": "ARC109",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 137
+    },
+    "DRC62": {
+      "codigo": "DRC62",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 138
+    },
+    "AGRC0": {
+      "codigo": "AGRC0",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 139
+    },
+    "DRC69": {
+      "codigo": "DRC69",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 140
+    },
+    "RC1": {
+      "codigo": "RC1",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 141
+    },
+    "OC1RC49": {
+      "codigo": "OC1RC49",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 142
+    },
+    "R385": {
+      "codigo": "R385",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 143
+    },
+    "OC1RC50": {
+      "codigo": "OC1RC50",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 144
+    },
+    "RC0117": {
+      "codigo": "RC-0117",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 145
+    },
+    "RC132": {
+      "codigo": "RC132",
+      "set_a": 90.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 146
+    },
+    "GRC105": {
+      "codigo": "GRC105",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 147
+    },
+    "BRC102": {
+      "codigo": "BRC102",
+      "set_a": 160.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 148
+    },
+    "RC99": {
+      "codigo": "RC99",
+      "set_a": 250.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 149
+    },
+    "BRC109": {
+      "codigo": "BRC109",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 150
+    },
+    "GRC93": {
+      "codigo": "GRC93",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 151
+    },
+    "SPAC1": {
+      "codigo": "SPAC1",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 152
+    },
+    "SPAC2": {
+      "codigo": "SPAC2",
+      "set_a": 130.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 153
+    },
+    "TARC1": {
+      "codigo": "TARC1",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 154
+    },
+    "TARC2": {
+      "codigo": "TARC2",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 155
+    },
+    "RC0263": {
+      "codigo": "RC0263",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 156
+    },
+    "RC0119": {
+      "codigo": "RC0119",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 157
+    },
+    "BRC100": {
+      "codigo": "BRC100",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 158
+    },
+    "RC0118": {
+      "codigo": "RC-0118",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 159
+    },
+    "BRC101": {
+      "codigo": "BRC101",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 160
+    },
+    "BRC96": {
+      "codigo": "BRC96",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 161
+    },
+    "LOSALPES": {
+      "codigo": "LOS_ALPES",
+      "set_a": 25.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 162
+    },
+    "DRC67": {
+      "codigo": "DRC67",
+      "set_a": 18.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 163
+    },
+    "ABRC2": {
+      "codigo": "ABRC2",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 168
+    },
+    "ABRC1": {
+      "codigo": "ABRC1",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 169
+    },
+    "RC0155": {
+      "codigo": "RC0155",
+      "set_a": 20.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 170
+    },
+    "RC0156": {
+      "codigo": "RC0156",
+      "set_a": 15.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 171
+    },
+    "RC0157": {
+      "codigo": "RC0157",
+      "set_a": 20.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 172
+    },
+    "MONTECITOS": {
+      "codigo": "MONTECITOS",
+      "set_a": 42.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 173
+    },
+    "LAMATA": {
+      "codigo": "LAMATA",
+      "set_a": 130.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 174
+    },
+    "PELC1": {
+      "codigo": "PELC1",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 175
+    },
+    "PELC2": {
+      "codigo": "PELC2",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 176
+    },
+    "ORUC2": {
+      "codigo": "ORUC2",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 180
+    },
+    "CACHIRA": {
+      "codigo": "CACHIRA",
+      "set_a": 42.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 181
+    },
+    "R267": {
+      "codigo": "R267",
+      "set_a": 35.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 182
+    },
+    "ERC130": {
+      "codigo": "ERC130",
+      "set_a": 270.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 183
+    },
+    "RC0150": {
+      "codigo": "RC0150",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 184
+    },
+    "CRC39": {
+      "codigo": "CRC39",
+      "set_a": 18.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 187
+    },
+    "GRAC2": {
+      "codigo": "GRAC2",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 188
+    },
+    "GRAC3": {
+      "codigo": "GRAC3",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 189
+    },
+    "GRAC1": {
+      "codigo": "GRAC1",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 190
+    },
+    "ERC80": {
+      "codigo": "ERC80",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 191
+    },
+    "ERC78": {
+      "codigo": "ERC78",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 192
+    },
+    "ERC81": {
+      "codigo": "ERC81",
+      "set_a": 35.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 193
+    },
+    "ERC92": {
+      "codigo": "ERC92",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 194
+    },
+    "ERC93": {
+      "codigo": "ERC93",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 195
+    },
+    "ERC94": {
+      "codigo": "ERC94",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 196
+    },
+    "ERC100": {
+      "codigo": "ERC100",
+      "set_a": 220.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 197
+    },
+    "ERC98": {
+      "codigo": "ERC98",
+      "set_a": 230.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 198
+    },
+    "ERC102": {
+      "codigo": "ERC102",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 199
+    },
+    "RC0202": {
+      "codigo": "RC0202",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 201
+    },
+    "RC0201": {
+      "codigo": "RC0201",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 202
+    },
+    "RC0224": {
+      "codigo": "RC0224",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 203
+    },
+    "RC0200": {
+      "codigo": "RC0200",
+      "set_a": 20.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 204
+    },
+    "XRC102": {
+      "codigo": "XRC102",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 205
+    },
+    "R284": {
+      "codigo": "R284",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 206
+    },
+    "RC0192": {
+      "codigo": "RC0192",
+      "set_a": 290.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 207
+    },
+    "RC0236": {
+      "codigo": "RC0236",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 208
+    },
+    "RC0237": {
+      "codigo": "RC0237",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 209
+    },
+    "RC0211": {
+      "codigo": "RC0211",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 210
+    },
+    "RC0163": {
+      "codigo": "RC0163",
+      "set_a": 430.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 211
+    },
+    "BELC24": {
+      "codigo": "BELC24",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 212
+    },
+    "RC0233": {
+      "codigo": "RC0233",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 213
+    },
+    "RC0183": {
+      "codigo": "RC0183",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 214
+    },
+    "RC0160": {
+      "codigo": "RC0160",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 215
+    },
+    "RC0162": {
+      "codigo": "RC0162",
+      "set_a": 230.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 216
+    },
+    "RC0161": {
+      "codigo": "RC0161",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 217
+    },
+    "RC0220": {
+      "codigo": "RC0220",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 218
+    },
+    "RC0158": {
+      "codigo": "RC0158",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 219
+    },
+    "RC0225": {
+      "codigo": "RC0225",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 220
+    },
+    "RC0244": {
+      "codigo": "RC0244",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 221
+    },
+    "RC0228": {
+      "codigo": "RC0228",
+      "set_a": 90.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 222
+    },
+    "RC0182": {
+      "codigo": "RC0182",
+      "set_a": 35.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 223
+    },
+    "RC0159": {
+      "codigo": "RC0159",
+      "set_a": 410.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 224
+    },
+    "RC0245": {
+      "codigo": "RC0245",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 226
+    },
+    "RC0193": {
+      "codigo": "RC0193",
+      "set_a": 250.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 227
+    },
+    "RC0152": {
+      "codigo": "RC0152",
+      "set_a": 300.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 229
+    },
+    "RC0179": {
+      "codigo": "RC0179",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 230
+    },
+    "RC0223": {
+      "codigo": "RC0223",
+      "set_a": 340.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 232
+    },
+    "RC0254": {
+      "codigo": "RC0254",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 233
+    },
+    "RC0231": {
+      "codigo": "RC0231",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 234
+    },
+    "RC0209": {
+      "codigo": "RC0209",
+      "set_a": 90.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 235
+    },
+    "RC0214": {
+      "codigo": "RC0214",
+      "set_a": 85.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 236
+    },
+    "RC0166": {
+      "codigo": "RC0166",
+      "set_a": 55.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 237
+    },
+    "RC0229": {
+      "codigo": "RC0229",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 238
+    },
+    "RC0151": {
+      "codigo": "RC0151",
+      "set_a": 30.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 239
+    },
+    "RC0167": {
+      "codigo": "RC0167",
+      "set_a": 24.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 240
+    },
+    "RC0184": {
+      "codigo": "RC0184",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 241
+    },
+    "RC0208": {
+      "codigo": "RC0208",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 242
+    },
+    "RC0186": {
+      "codigo": "RC0186",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 243
+    },
+    "RC0194": {
+      "codigo": "RC0194",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 244
+    },
+    "RC0196": {
+      "codigo": "RC0196",
+      "set_a": 35.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 245
+    },
+    "RC0204": {
+      "codigo": "RC0204",
+      "set_a": 16.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 246
+    },
+    "RC0207": {
+      "codigo": "RC0207",
+      "set_a": 230.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 247
+    },
+    "RC0213": {
+      "codigo": "RC0213",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 248
+    },
+    "RC0215": {
+      "codigo": "RC0215",
+      "set_a": 27.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 249
+    },
+    "RC0217": {
+      "codigo": "RC0217",
+      "set_a": 220.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 250
+    },
+    "RC0221": {
+      "codigo": "RC0221",
+      "set_a": 420.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 251
+    },
+    "RC0226": {
+      "codigo": "RC0226",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 252
+    },
+    "RC0234": {
+      "codigo": "RC0234",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 253
+    },
+    "RC0235": {
+      "codigo": "RC0235",
+      "set_a": 9.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 254
+    },
+    "RC0251": {
+      "codigo": "RC0251",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 255
+    },
+    "RC0227": {
+      "codigo": "RC0227",
+      "set_a": 380.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 256
+    },
+    "RC0230": {
+      "codigo": "RC0230",
+      "set_a": 390.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 257
+    },
+    "RC0154": {
+      "codigo": "RC0154",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 259
+    },
+    "RC0181": {
+      "codigo": "RC0181",
+      "set_a": 350.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 260
+    },
+    "RC0189": {
+      "codigo": "RC0189",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 261
+    },
+    "RC0172": {
+      "codigo": "RC0172",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 262
+    },
+    "RC0173": {
+      "codigo": "RC0173",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 263
+    },
+    "RC0174": {
+      "codigo": "RC0174",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 264
+    },
+    "RC0175": {
+      "codigo": "RC0175",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 265
+    },
+    "RC0178": {
+      "codigo": "RC0178",
+      "set_a": 45.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 266
+    },
+    "RC0191": {
+      "codigo": "RC0191",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 267
+    },
+    "RC0249": {
+      "codigo": "RC0249",
+      "set_a": 380.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 268
+    },
+    "RC0252": {
+      "codigo": "RC0252",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 269
+    },
+    "RC0253": {
+      "codigo": "RC0253",
+      "set_a": 70.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 270
+    },
+    "RC0238": {
+      "codigo": "RC0238",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 271
+    },
+    "RC0218": {
+      "codigo": "RC0218",
+      "set_a": 410.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 272
+    },
+    "RC0240": {
+      "codigo": "RC0240",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 273
+    },
+    "RC0219": {
+      "codigo": "RC0219",
+      "set_a": 380.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 274
+    },
+    "RC0246": {
+      "codigo": "RC0246",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 275
+    },
+    "RC0250": {
+      "codigo": "RC0250",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 276
+    },
+    "RC0248": {
+      "codigo": "RC0248",
+      "set_a": 360.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 277
+    },
+    "RC0247": {
+      "codigo": "RC0247",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 278
+    },
+    "RC0168": {
+      "codigo": "RC0168",
+      "set_a": 24.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 279
+    },
+    "RC0198": {
+      "codigo": "RC0198",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 284
+    },
+    "RC0197": {
+      "codigo": "RC0197",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 285
+    },
+    "RC0170": {
+      "codigo": "RC0170",
+      "set_a": 32.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 286
+    },
+    "SANANTONIO": {
+      "codigo": "SAN_ANTONIO",
+      "set_a": 22.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 287
+    },
+    "RCPV002": {
+      "codigo": "RCPV002",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 288
+    },
+    "RC0180": {
+      "codigo": "RC0180",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 289
+    },
+    "CAMC1": {
+      "codigo": "CAMC1",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 290
+    },
+    "CAMC2": {
+      "codigo": "CAMC2",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 291
+    },
+    "CAMC3": {
+      "codigo": "CAMC3",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 292
+    },
+    "RC0171": {
+      "codigo": "RC0171",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 296
+    },
+    "RC0176": {
+      "codigo": "RC0176",
+      "set_a": 110.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 297
+    },
+    "RC0177": {
+      "codigo": "RC0177",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 298
+    },
+    "RC0239": {
+      "codigo": "RC0239",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 299
+    },
+    "RC0203": {
+      "codigo": "RC0203",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 300
+    },
+    "RC0205": {
+      "codigo": "RC0205",
+      "set_a": 125.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 301
+    },
+    "RC0206": {
+      "codigo": "RC0206",
+      "set_a": 35.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 302
+    },
+    "ERC135": {
+      "codigo": "ERC135",
+      "set_a": 280.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 303
+    },
+    "GAMC1": {
+      "codigo": "GAMC1",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 304
+    },
+    "GAMC2": {
+      "codigo": "GAMC2",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 305
+    },
+    "GAMC3": {
+      "codigo": "GAMC3",
+      "set_a": 260.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 306
+    },
+    "RC0261": {
+      "codigo": "RC0261",
+      "set_a": 16.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 309
+    },
+    "RC0185": {
+      "codigo": "RC0185",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 311
+    },
+    "RC0153": {
+      "codigo": "RC0153",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 313
+    },
+    "RC0210": {
+      "codigo": "RC0210",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 314
+    },
+    "RC0169": {
+      "codigo": "RC0169",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 318
+    },
+    "R266": {
+      "codigo": "R266",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 322
+    },
+    "RPNEKMVE963": {
+      "codigo": "RP_NE_KMVE963",
+      "set_a": 48.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 334
+    },
+    "R280": {
+      "codigo": "R280",
+      "set_a": 210.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 335
+    },
+    "R281": {
+      "codigo": "R281",
+      "set_a": 210.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 340
+    },
+    "R282": {
+      "codigo": "R282",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 341
+    },
+    "R316": {
+      "codigo": "R316",
+      "set_a": 200.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 343
+    },
+    "R304": {
+      "codigo": "R304",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 344
+    },
+    "R307": {
+      "codigo": "R307",
+      "set_a": 130.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 345
+    },
+    "R303": {
+      "codigo": "R303",
+      "set_a": 130.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 346
+    },
+    "R305": {
+      "codigo": "R305",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 347
+    },
+    "R297": {
+      "codigo": "R297",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 348
+    },
+    "R298": {
+      "codigo": "R298",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 349
+    },
+    "R294": {
+      "codigo": "R294",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 350
+    },
+    "R299": {
+      "codigo": "R299",
+      "set_a": 180.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 351
+    },
+    "R288": {
+      "codigo": "R288",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 352
+    },
+    "R293": {
+      "codigo": "R293",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 353
+    },
+    "R302": {
+      "codigo": "R302",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 354
+    },
+    "R301": {
+      "codigo": "R301",
+      "set_a": 80.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 356
+    },
+    "R322": {
+      "codigo": "R322",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 358
+    },
+    "R325": {
+      "codigo": "R325",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 359
+    },
+    "R324": {
+      "codigo": "R324",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 360
+    },
+    "R321": {
+      "codigo": "R321",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 361
+    },
+    "R313": {
+      "codigo": "R313",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 362
+    },
+    "R314": {
+      "codigo": "R314",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 363
+    },
+    "R295": {
+      "codigo": "R295",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 364
+    },
+    "RPNEMVEL1265753": {
+      "codigo": "RP_NE MVEL126575-3",
+      "set_a": 48.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 365
+    },
+    "RPNEOMVEL120700": {
+      "codigo": "RP_NE OMVEL120700",
+      "set_a": 110.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 366
+    },
+    "RPNEMMVEL959761": {
+      "codigo": "RP_NE MMVEL95976-1",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 368
+    },
+    "RPNELMVEL1076861": {
+      "codigo": "RP_NE LMVEL107686-1",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 372
+    },
+    "RPNEZ301759": {
+      "codigo": "RP_NE Z301759",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 373
+    },
+    "RPNE39275485": {
+      "codigo": "RP_NE 39275485",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 374
+    },
+    "RPNEZ3017592": {
+      "codigo": "RP_NE Z301759_2",
+      "set_a": 25.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 375
+    },
+    "RPNECMVE4744": {
+      "codigo": "RP_NE CMVE4744",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 376
+    },
+    "RPNEMVEL75304": {
+      "codigo": "RP_NE MVEL75304",
+      "set_a": 61.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 377
+    },
+    "RPNEIMVEL66302": {
+      "codigo": "RP_NE IMVEL66302",
+      "set_a": 63.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 378
+    },
+    "RPNEAMVE3725": {
+      "codigo": "RP_NE AMVE3725",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 379
+    },
+    "RPNEZ340608": {
+      "codigo": "RP_NE Z340608",
+      "set_a": 75.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 380
+    },
+    "R346": {
+      "codigo": "R346",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 383
+    },
+    "TARC11": {
+      "codigo": "TARC11",
+      "set_a": 210.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 385
+    },
+    "TARC3": {
+      "codigo": "TARC3",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 386
+    },
+    "RPNEJMVE3424": {
+      "codigo": "RP_NE JMVE3424",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 387
+    },
+    "R347": {
+      "codigo": "R347",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 389
+    },
+    "R328": {
+      "codigo": "R328",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 391
+    },
+    "RPNEDMVEL740321": {
+      "codigo": "RP_NE DMVEL74032-1",
+      "set_a": 52.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 392
+    },
+    "RPNEKMVE1171": {
+      "codigo": "RP_NE KMVE1171",
+      "set_a": 80.3,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 393
+    },
+    "RPNEGMVE3454": {
+      "codigo": "RP_NE GMVE3454",
+      "set_a": 25.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 394
+    },
+    "SPAC11": {
+      "codigo": "SPAC11",
+      "set_a": 210.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 395
+    },
+    "RPNEYMVEL65528": {
+      "codigo": "RP_NE YMVEL65528",
+      "set_a": 75.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 396
+    },
+    "RPNECMVE3568": {
+      "codigo": "RP_NE CMVE3568",
+      "set_a": 56.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 397
+    },
+    "RPNERMVEL1047861": {
+      "codigo": "RP_NE RMVEL104786-1",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 398
+    },
+    "RPNECMVE35682": {
+      "codigo": "RP_NE CMVE3568_2",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 399
+    },
+    "R330": {
+      "codigo": "R330",
+      "set_a": 20.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 401
+    },
+    "R353": {
+      "codigo": "R353",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 404
+    },
+    "RPNEGMVE1365": {
+      "codigo": "RP_NE GMVE1365",
+      "set_a": 56.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 405
+    },
+    "RPNEFMVE136": {
+      "codigo": "RP_NE FMVE136",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 406
+    },
+    "RPNEMMVEL1154742": {
+      "codigo": "RP_NE MMVEL115474-2",
+      "set_a": 41.41,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 407
+    },
+    "RPNECMVEL1100761": {
+      "codigo": "RP_NE CMVEL110076-1",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 408
+    },
+    "RPNECMVEL11007612": {
+      "codigo": "RP_NE CMVEL110076-1_2",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 409
+    },
+    "RPNECMVEL1100751": {
+      "codigo": "RP_NE CMVEL110075-1",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 410
+    },
+    "R348": {
+      "codigo": "R348",
+      "set_a": 230.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 413
+    },
+    "CAOINDIO": {
+      "codigo": "CAÑOINDIO",
+      "set_a": 11.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 414
+    },
+    "R354": {
+      "codigo": "R354",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 415
+    },
+    "R384": {
+      "codigo": "R384",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 416
+    },
+    "R366": {
+      "codigo": "R366",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 417
+    },
+    "R367": {
+      "codigo": "R367",
+      "set_a": 120.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 418
+    },
+    "R327": {
+      "codigo": "R327",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 419
+    },
+    "R356": {
+      "codigo": "R356",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 422
+    },
+    "SARC3": {
+      "codigo": "SARC3",
+      "set_a": 320.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 431
+    },
+    "LPRC10": {
+      "codigo": "LPRC10",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 432
+    },
+    "LPRC20": {
+      "codigo": "LPRC20",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 433
+    },
+    "LPRC30": {
+      "codigo": "LPRC30",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 434
+    },
+    "LPRC40": {
+      "codigo": "LPRC40",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 435
+    },
+    "LPRC50": {
+      "codigo": "LPRC50",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 436
+    },
+    "LPRC60": {
+      "codigo": "LPRC60",
+      "set_a": 220.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 437
+    },
+    "R378": {
+      "codigo": "R378",
+      "set_a": 110.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 439
+    },
+    "R365": {
+      "codigo": "R365",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 440
+    },
+    "R403": {
+      "codigo": "R403",
+      "set_a": 100.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 442
+    },
+    "R402": {
+      "codigo": "R402",
+      "set_a": 140.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 446
+    },
+    "R396": {
+      "codigo": "R396",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 447
+    },
+    "R392": {
+      "codigo": "R392",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 451
+    },
+    "R394": {
+      "codigo": "R394",
+      "set_a": 30.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 452
+    },
+    "R373": {
+      "codigo": "R373",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 453
+    },
+    "R374": {
+      "codigo": "R374",
+      "set_a": 150.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 454
+    },
+    "CANO1": {
+      "codigo": "CANO1",
+      "set_a": 22.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 455
+    },
+    "R372": {
+      "codigo": "R372",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 458
+    },
+    "R415": {
+      "codigo": "R415",
+      "set_a": 35.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 459
+    },
+    "R417": {
+      "codigo": "R417",
+      "set_a": 60.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 460
+    },
+    "R376": {
+      "codigo": "R376",
+      "set_a": 40.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 461
+    },
+    "R397": {
+      "codigo": "R397",
+      "set_a": 50.0,
+      "hoja": "AJUSTE DE RECONECTADORES",
+      "fila": 462
+    }
+  }
+}

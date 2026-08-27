@@ -24,4 +24,6 @@ urlpatterns = [
     path("api/admin/guardar-reglas-maniobra/", views.api_admin_guardar_reglas_maniobra, name="api_admin_guardar_reglas_maniobra"),
     path("api/admin/barras/", views.api_admin_barras, name="api_admin_barras"),
     path("api/admin/guardar-medidas/", views.api_admin_guardar_medidas, name="api_admin_guardar_medidas"),
+    path("api/admin/configuracion-scada/", views.api_admin_configuracion_scada, name="api_admin_configuracion_scada"),
+    path("api/admin/seleccionar-carpeta-scada/", views.api_admin_seleccionar_carpeta_scada, name="api_admin_seleccionar_carpeta_scada"),
 ]

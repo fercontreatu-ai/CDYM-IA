@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 FROZEN = bool(getattr(sys, "frozen", False))
 BASE_DIR = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent.parent))
 RUNTIME_DIR = Path(sys.executable).resolve().parent if FROZEN else Path(__file__).resolve().parent.parent
-PROJECT_ROOT = RUNTIME_DIR if FROZEN else RUNTIME_DIR.parent
+PROJECT_ROOT = RUNTIME_DIR
 load_dotenv(RUNTIME_DIR / ".env")
 load_dotenv(PROJECT_ROOT / ".env")
 
@@ -19,7 +19,7 @@ ROOT_URLCONF='config.urls'
 TEMPLATES=[{'BACKEND':'django.template.backends.django.DjangoTemplates','DIRS':[BASE_DIR/'templates'],'APP_DIRS':True,'OPTIONS':{'context_processors':['django.template.context_processors.request','django.contrib.auth.context_processors.auth','django.contrib.messages.context_processors.messages']}}]
 WSGI_APPLICATION='config.wsgi.application'
 ASGI_APPLICATION='config.asgi.application'
-DATABASE_FILE=Path(os.getenv('CDYM_IA_DATABASE',os.getenv('CDYM_DATABASE',str(PROJECT_ROOT/'alimentadores.sqlite')))).expanduser().resolve()
+DATABASE_FILE=Path(os.getenv('CDYM_IA_DATABASE',os.getenv('CDYM_DATABASE',str(PROJECT_ROOT/'alimentadores_reducida.sqlite')))).expanduser().resolve()
 DATA_DIR=Path(os.getenv('CDYM_IA_DATA_DIR',str(PROJECT_ROOT/'datos'))).expanduser().resolve()
 CDYM_EDITION='IA'
 DATABASES={'default':{'ENGINE':'django.db.backends.sqlite3','NAME':DATABASE_FILE,'OPTIONS':{'timeout':60}}}

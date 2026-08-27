@@ -3,12 +3,33 @@
 Esta carpeta es una copia evolutiva del código funcional. La versión estable **Sin IA**
 permanece en la raíz del proyecto.
 
-Por defecto, esta edición usa `../alimentadores.sqlite`, `../datos` y `../.env`. Se pueden
-aislar mediante `CDYM_IA_DATABASE` y `CDYM_IA_DATA_DIR`. No se duplican los paquetes
-`dist*` ni la base de varios GB.
+Por defecto, esta edición usa `alimentadores_reducida.sqlite`, `datos` y `.env` dentro de esta
+misma carpeta. Las rutas se pueden reemplazar mediante `CDYM_IA_DATABASE` y
+`CDYM_IA_DATA_DIR`.
 
-Para ejecutarla desde esta carpeta use `.\iniciar_ia.ps1`. Se inicia en
-`http://127.0.0.1:8001`; el estado de la capa IA está en `/api/ia/estado/`.
+La carpeta compartida de archivos SCADA se configura en **Admin > Datos SCADA**.
+Se recuerda por usuario en `%LOCALAPPDATA%\CDYM\config.json`, fuera del repositorio,
+y también puede imponerse mediante `CDYM_SCADA_DATA_DIR`. La carpeta debe contener
+subcarpetas anuales, por ejemplo `2025` y `2026`.
+
+La SQLite operativa conserva las asignaciones administrativas y la fecha elegida para
+cada categoría/delta, pero no necesita almacenar los 96 intervalos. En modo histórico
+se consulta la fecha precalculada; en modo de fecha específica se usa la fecha indicada.
+En ambos casos las curvas se leen de los Excel del año y mes correspondientes en la
+carpeta SCADA configurada. Se prioriza la fuente asignada y se usan MED, REL o REC como
+respaldo, siempre sin mezclar fuentes dentro de un mismo día.
+
+Para ejecutarla desde esta carpeta use `.\iniciar_ia.ps1`. En la primera
+ejecución el script crea `.venv`, instala `requirements.txt` y aplica las
+migraciones. En las siguientes ejecuciones solo reinstala dependencias si
+cambió `requirements.txt`. Antes de iniciar también consulta la rama remota
+de Git; cuando encuentra una versión nueva pregunta si desea actualizarla y,
+si se acepta, hace una actualización de avance seguro y reinicia el lanzador.
+Si no hay conexión, continúa con la versión local. El equipo debe tener Python
+3 y Git instalados; `.env` y la base SQLite local deben copiarse/configurarse
+porque no viajan en Git.
+La aplicación se inicia en `http://127.0.0.1:8001`; el estado de la capa IA
+está en `/api/ia/estado/`.
 
 El iniciador experimental no ejecuta migraciones automáticamente sobre la base compartida.
 
