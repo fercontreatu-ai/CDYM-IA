@@ -3,10 +3,13 @@ from __future__ import annotations
 import copy
 import json
 import os
+import re
 import threading
 import time
 from collections import defaultdict, deque
 from contextlib import contextmanager
+
+from .tc1 import TC1Service
 
 FNO_TIPOS = {17600: "Generador", 17900: "Puesta a Tierra", 18700: "Barraje Subestación", 18800: "Interruptor", 19000: "Conductor Primario", 19300: "Aisladero", 19400: "Cuchilla", 19600: "Seccionalizador", 19700: "Suiche", 19800: "Reconectador", 20100: "Pararrayos", 20200: "Capacitor", 20300: "Regulador", 20400: "Transformador", 20600: "Bajante", 22300: "Punto de Medida"}
 FNO_NO_VISIBLES = {17900, 20100}
@@ -18,6 +21,51 @@ _TRACE_CACHE_SECONDS = 600
 _CATALOG_CACHE = {}
 _CATALOG_CACHE_LOCK = threading.RLock()
 _CATALOG_CACHE_SECONDS = int(os.getenv("GTECH_CATALOG_CACHE_SECONDS", "600"))
+
+_UC_RA2_PASO = {
+    101, 201, 205, 301, 305, 401, 406, 511, 514, 535,
+    701, 702, 703, 704, 712, 713, 715, 716, 718, 719,
+    801, 802, 1001, 1002,
+}
+_UC_RA2_RETENCION = {
+    102, 103, 104, 202, 203, 204, 206, 207, 208, 209,
+    302, 303, 304, 306, 307, 308, 402, 403, 404, 405,
+    407, 408, 409, 410, 532, 543, 546, 641, 705, 706,
+    707, 708, 709, 710, 711, 714, 717, 720, 803, 804,
+    805, 806, 1003, 1004,
+}
+
+
+def _nodos_barras(filas) -> set[int]:
+    """Incluye ambos terminales de cada barra GTECH."""
+    return {int(nodo) for fila in filas for nodo in fila if nodo}
+
+
+def _clasificar_estructura_poste(tipo_adecuacion: str, tipo_instalacion: str, unidades: list[dict]) -> tuple[str, str]:
+    """Clasifica por atributos constructivos GTech; nunca usa la geometría de la red."""
+    atributos = " ".join((str(tipo_adecuacion or ""), str(tipo_instalacion or ""))).upper()
+    if any(x in atributos for x in ("RETEN", "TERMINAL", "ANGULO", "ÁNGULO", "ANCLA", "DERIV")):
+        return "RETENCION", "TIPO_ADECUACION"
+    if any(x in atributos for x in ("SUSPENSION", "SUSPENSIÓN", "PASO")):
+        return "PASO", "TIPO_ADECUACION"
+
+    textos = " ".join(f"{x.get('norma','')} {x.get('grupo','')}" for x in unidades).upper()
+    if any(x in textos for x in ("RETEN", "TERMINAL", "ANGULO", "ÁNGULO", "ANCLA", "DERIV")):
+        return "RETENCION", "UNIDAD_CONSTRUCTIVA"
+    if any(x in textos for x in ("SUSPENSION", "SUSPENSIÓN", "PASO")):
+        return "PASO", "UNIDAD_CONSTRUCTIVA"
+
+    codigos = {
+        int(match.group(1))
+        for unidad in unidades
+        for match in [re.search(r"(?:NC-)?RA2-(\d{3,4})(?:-\d+)?\b", str(unidad.get("norma") or "").upper())]
+        if match
+    }
+    if codigos.intersection(_UC_RA2_RETENCION):
+        return "RETENCION", "UNIDAD_CONSTRUCTIVA"
+    if codigos.intersection(_UC_RA2_PASO):
+        return "PASO", "UNIDAD_CONSTRUCTIVA"
+    return "SIN_CLASIFICAR", "SIN_DATO_CONSTRUCTIVO"
 
 
 def _catalog_cache_get(key):
@@ -167,7 +215,9 @@ class GTechService:
         miny, maxy = min(p[1] for p in puntos)-.00012, max(p[1] for p in puntos)+.00012
         sql = f"""SELECT P.G3E_FID,NVL(M.CODIGO_OPERATIVO,NVL(P.CODIGO,TO_CHAR(P.G3E_FID))),
         NVL(P.TIPO,''),NVL(P.MATERIAL,''),P.ALTURA,NVL(P.CLASE,''),NVL(P.USO,''),
-        M.COOR_GPS_LAT,M.COOR_GPS_LON,NVL(N.NORMA1,''),NVL(N.GRUPO1,'')
+        NVL(P.RESISTENCIA_KGF,''),NVL(P.TIPO_ADECUACION,''),NVL(P.TIPO_INSTALACION,''),
+        M.COOR_GPS_LAT,M.COOR_GPS_LON,
+        {','.join(f"NVL(N.NORMA{i},''),NVL(N.GRUPO{i},'')" for i in range(1,11))}
         FROM {self.q('EPOSTE_AT')} P JOIN {self.q('CCOMUN')} M ON M.G3E_FID=P.G3E_FID
         LEFT JOIN {self.q('B$NORMA_POSTE_AT')} N ON N.G3E_FID=P.G3E_FID
         WHERE M.EMPRESA_ORIGEN='CENS' AND M.COOR_GPS_LAT BETWEEN :miny AND :maxy
@@ -183,7 +233,7 @@ class GTechService:
 
         postes = {}
         for r in cur.fetchall():
-            lat, lon = r[7], r[8]
+            lat, lon = r[10], r[11]
             if lat is None or lon is None:
                 continue
             lon,lat=float(lon),float(lat)
@@ -191,14 +241,21 @@ class GTechService:
             segmentos_cercanos = [segmento for dx in (-1, 0, 1) for dy in (-1, 0, 1) for segmento in segmentos_por_celda.get((ix + dx, iy + dy), ())]
             if segmentos and (not segmentos_cercanos or min(distancia_segmento(lon,lat,a,b) for a,b in segmentos_cercanos) > .00006):
                 continue
-            cercanos=sum(1 for x,y in extremos if abs(x-lon)<.00006 and abs(y-lat)<.00006)
-            texto=f"{r[9]} {r[10]}".upper()
-            estructura="RETENCION" if cercanos != 2 or any(x in texto for x in ("RETEN","FIN","ANGULO","ANCLA")) else "PASO"
+            unidades=[{"norma":str(r[12+(i*2)] or "").strip(),"grupo":str(r[13+(i*2)] or "").strip()} for i in range(10)]
+            unidades=[x for x in unidades if x["norma"] or x["grupo"]]
+            estructura,fuente_estructura=_clasificar_estructura_poste(r[8],r[9],unidades)
+            resistencia_texto=str(r[7] or "").strip()
+            coincidencia_resistencia=re.search(r"\d+(?:[.,]\d+)?",resistencia_texto)
+            resistencia_kgf=float(coincidencia_resistencia.group(0).replace(",",".")) if coincidencia_resistencia else None
+            if resistencia_kgf is not None and resistencia_kgf < 50:resistencia_kgf=None
             postes[int(r[0])]={"g3e_fid":int(r[0]),"g3e_fno":17100,"codigo":str(r[1] or r[0]).strip(),
                 "tipo":"Poste MT","tipo_poste":str(r[2]).strip(),"material":str(r[3]).strip(),
                 "altura":float(r[4]) if r[4] is not None else None,"clase":str(r[5]).strip(),
-                "uso":str(r[6] or "").strip(),"norma":str(r[9] or "").strip(),"grupo_norma":str(r[10] or "").strip(),
-                "tipo_estructura":estructura,"punto":[lon,lat]}
+                "uso":str(r[6] or "").strip(),"resistencia_kgf":resistencia_kgf,"resistencia_gtech":resistencia_texto,
+                "tipo_adecuacion":str(r[8] or "").strip(),"tipo_instalacion":str(r[9] or "").strip(),
+                "norma":unidades[0]["norma"] if unidades else "","grupo_norma":unidades[0]["grupo"] if unidades else "",
+                "unidades_constructivas":unidades,"tipo_estructura":estructura,"fuente_tipo_estructura":fuente_estructura,
+                "punto":[lon,lat]}
         return list(postes.values())
     @staticmethod
     def _camino(elementos: list[dict], raiz_fid: int, subestacion: str, nodo_barra: int, objetivo_sub: str = "") -> list[dict]:
@@ -271,6 +328,7 @@ class GTechService:
                 # El JSON conserva topologia, incluso a traves de dispositivos abiertos.
                 # El estado OPEN se respeta despues en el calculo electrico del visor.
                 if remoto:
+                    equipo["frontera_externa"] = True
                     continue
                 otro = equipo["nodo2"] if equipo["nodo1"] == nodo else equipo["nodo1"]
                 if otro and otro not in nodos_visitados:
@@ -293,8 +351,8 @@ class GTechService:
             tension=str(row[11] or '').strip().replace(',', '.')
             if tension not in {'13.8','34.5'}: raise ValueError('El interruptor debe ser de 13,8 o 34,5 kV.')
             raiz['tension']=tension
-            cur.execute(f"""SELECT DISTINCT NVL(NODO1_ID,0) FROM {self.q('CCONECTIVIDAD_E')} WHERE G3E_FNO=18700 AND UPPER(TRIM(SUBESTACION))=:sub AND REPLACE(TRIM(TENSION),',','.')=:tension AND ESTADO<>'RETIRADO'""", {"sub":subestacion,"tension":tension})
-            barras={int(r[0] or 0) for r in cur.fetchall()}; nodo_barra=next((n for n in (raiz['nodo1'],raiz['nodo2']) if n in barras),raiz['nodo1'])
+            cur.execute(f"""SELECT NVL(NODO1_ID,0),NVL(NODO2_ID,0) FROM {self.q('CCONECTIVIDAD_E')} WHERE G3E_FNO=18700 AND UPPER(TRIM(SUBESTACION))=:sub AND REPLACE(TRIM(TENSION),',','.')=:tension AND ESTADO<>'RETIRADO'""", {"sub":subestacion,"tension":tension})
+            barras=_nodos_barras(cur.fetchall()); nodo_barra=next((n for n in (raiz['nodo1'],raiz['nodo2']) if n in barras),raiz['nodo1'])
             cur.execute(f"SELECT NVL(DIRECCION_SALIDA,''),NVL(DIRECCION_SALIDA2,''),NVL(SUB_FINAL,'') FROM {self.q('B$EINTERRU_AT')} WHERE G3E_FID=:fid", {"fid":fid_raiz})
             meta=cur.fetchone() or ("","","")
             texto_destino=" ".join(str(x or "").upper() for x in meta)
@@ -352,6 +410,12 @@ class GTechService:
                 binds=','.join(f':t{i}' for i in range(len(trafo_fids)));params={f't{i}':f for i,f in enumerate(trafo_fids)}
                 cur.execute(f"SELECT C.G3E_FID,NVL(M.CODIGO_OPERATIVO,''),NVL(M.CODIGO_MARCACION,''),NVL(C.TENSION,''),NVL(C.TENSION_SECUNDARIA,''),C.CAPACIDAD_NOMINAL,NVL(C.UNIDAD_MED_CAPACIDAD,''),NVL(T.USO,''),NVL(C.NODO_TRANSFORM_V,'') FROM {self.q('CCONECTIVIDAD_E')} C JOIN {self.q('CCOMUN')} M ON M.G3E_FID=C.G3E_FID LEFT JOIN {self.q('ETRANSFO_AT')} T ON T.G3E_FID=C.G3E_FID WHERE C.G3E_FID IN ({binds})",params)
                 for r in cur.fetchall():detalles_trafos[int(r[0])]={'codigo_operacion':str(r[1]).strip(),'numero_transformador':str(r[2]).strip(),'tension_primaria':str(r[3]).strip(),'tension_secundaria':str(r[4]).strip(),'capacidad':float(r[5]) if r[5] is not None else None,'unidad_capacidad':str(r[6]).strip(),'uso':str(r[7]).strip(),'clave_usuarios':str(r[8]).strip(),'usuarios':[]}
+                trafos_por_codigo={str(d.get('codigo_operacion') or '').strip().upper():d for d in detalles_trafos.values() if str(d.get('codigo_operacion') or '').strip()}
+                usuarios_tc1,periodo_tc1=TC1Service().usuarios_por_transformadores(list(trafos_por_codigo),conn=conn)
+                for codigo,detalle in trafos_por_codigo.items():
+                    detalle['usuarios']=usuarios_tc1.get(codigo,[])
+                    detalle['periodo_usuarios_tc1']=periodo_tc1
+                    detalle['fuente_usuarios']='TC1_BRAE'
                 for e in camino:
                     if e['g3e_fid'] in detalles_trafos:e.update(detalles_trafos[e['g3e_fid']]);e['codigo']=e.get('codigo_operacion') or e['codigo']
             lineas=[e['g3e_fid'] for e in camino if e['g3e_fno']==19000]
@@ -378,7 +442,7 @@ class GTechService:
             if e.get("lat") is not None and e.get("lon") is not None:e["punto"]=[e["lon"],e["lat"]];continue
             puntos=[nodos[n] for n in (e['nodo1'],e['nodo2']) if n in nodos]
             if puntos: e['punto']=[sum(p[0] for p in puntos)/len(puntos),sum(p[1] for p in puntos)/len(puntos)]
-        resultado={"subestacion":subestacion,"tension":tension,"raiz":raiz,"fuentes":fuentes,"circuitos":sorted({e['circuito'] for e in camino if e['circuito']}),"elementos":camino,"postes":postes,"nodos":[{"id":n,"punto":p} for n,p in nodos.items()],"version_topologia":3,"version_postes":1}
+        resultado={"subestacion":subestacion,"tension":tension,"raiz":raiz,"fuentes":fuentes,"circuitos":sorted({e['circuito'] for e in camino if e['circuito']}),"elementos":camino,"postes":postes,"nodos":[{"id":n,"punto":p} for n,p in nodos.items()],"version_topologia":7,"version_postes":3}
         with _TRACE_CACHE_LOCK:
             _TRACE_CACHE[cache_key]=(time.monotonic(),copy.deepcopy(resultado))
             if len(_TRACE_CACHE)>128:

@@ -10,6 +10,7 @@ urlpatterns = [
     path("api/operar/", views.api_operar, name="api_operar"),
     path("api/restaurar-operaciones/", views.api_restaurar_operaciones, name="api_restaurar_operaciones"),
     path("api/exportar-maniobras-xlsx/", views.api_exportar_maniobras_xlsx, name="api_exportar_maniobras_xlsx"),
+    path("api/exportar-usuarios-xlsx/", views.api_exportar_usuarios_xlsx, name="api_exportar_usuarios_xlsx"),
     path("api/medidas/grafica/", views.api_grafica_medidas, name="api_grafica_medidas"),
     path("api/protocolo/aprendizaje/", views.api_aprendizaje_protocolo, name="api_aprendizaje_protocolo"),
     path("api/protocolo/guardar-aprendizaje/", views.api_guardar_aprendizaje_protocolo, name="api_guardar_aprendizaje_protocolo"),

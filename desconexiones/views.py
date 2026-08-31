@@ -11,17 +11,37 @@ from django.views.decorators.http import require_GET, require_POST
 from django.db import transaction
 from django.utils import timezone
 from .services.gtech import FNO_CORTE, GTechService
-from .services.sac import SacService
 from .services.medidas import cargar_catalogo, medidas_subestacion, coincidencia_preferida, normalizar
 from .services.series_medidas import SeriesMedidasService, VARIABLES
 from .services.sets_proteccion import set_sugerido
 from .services.kmz import leer_kmz
 from .services.configuracion_local import estado_carpeta_scada, guardar_carpeta_scada
+from .services.consumos_transformadores import aplicar_consumos_transformadores
 from .models import AsignacionMedidaEnergia, RelacionBarraTransformacion, RamalTransformadorManual, GrupoTransformadorBarra, BarraGrupoTransformador, CatalogoConductorCens, ConfiguracionTendidoCircuito, EstadoOperativoVigente, ParaleloCeldaPermitido, ConfiguracionManiobras, AprendizajeProtocolo, EventoAprendizajeProtocolo, PerfilAprendizajeManiobras
+
+FUNCIONES_ENTRADA_ENERGIA={"ENTRADA_RED","ENTRADA_TRANSFORMACION","TRANSFORMADOR"}
+
+def _aplicar_funcion_electrica(obj, funcion):
+    """Anexa el rol local sin alterar ni intentar persistir datos en GTECH."""
+    funcion=(funcion or "").strip().upper()
+    if not funcion:return
+    obj["funcion_electrica"]=funcion
+    obj["rol_flujo"]=funcion
+    obj["entrada_energia"]=funcion in FUNCIONES_ENTRADA_ENERGIA
+    obj["es_alimentador_salida"]=funcion in {"ALIMENTADOR","SALIDA_345","LINEA_345"}
 from .services.ia.aprendizaje import reconstruir_preferencias
 
 CIRCUITOS_DIR = Path(settings.DATA_DIR) / "circuitos"
 _CIRCUITOS_CACHE_LOCK = threading.RLock()
+
+
+def _relaciones_transformacion_subestacion(subestacion):
+    return [{
+        "barra_secundaria_fid": int(r.barra_secundaria_fid),
+        "barra_primaria_fid": int(r.barra_primaria_fid) if r.barra_primaria_fid else None,
+        "origen_tipo": r.origen_tipo,
+        "nivel_primario_kv": float(r.nivel_primario_kv) if r.nivel_primario_kv is not None else None,
+    } for r in RelacionBarraTransformacion.objects.filter(subestacion=subestacion)]
 
 
 @require_GET
@@ -57,24 +77,13 @@ def _archivo_circuito(subestacion, fid):
     codigo = "".join(c for c in subestacion.upper() if c.isalnum() or c in "-_")
     return CIRCUITOS_DIR / f"{codigo}__{int(fid)}.json"
 
-def _completar_sac(data):
-    transformadores=[e for e in data["elementos"] if e.get("g3e_fno")==20400]
-    codigos=[e.get("codigo_operacion") or e.get("codigo") for e in transformadores]
-    usuarios_por_trafo,excluidos_por_trafo,estado_por_trafo=SacService().usuarios_por_transformadores(codigos)
-    for elemento in transformadores:
-        codigo=str(elemento.get("codigo_operacion") or elemento.get("codigo") or "").strip().upper()
-        elemento["usuarios"]=usuarios_por_trafo.get(codigo,[])
-        elemento["medidas_auxiliares_excluidas"]=excluidos_por_trafo.get(codigo,0)
-        elemento.update(estado_por_trafo.get(codigo,{}))
-    data["version_sac_activos"] = 1
-    return data
-
-def _consultar_trazado(sub, fid, force_refresh=False, incluir_sac=True):
+def _consultar_trazado(sub, fid, force_refresh=False):
     data=GTechService().trazar_circuito(sub,fid,force_refresh=force_refresh)
     data["fecha_consulta"] = datetime.now().astimezone().isoformat(timespec="seconds")
     data["version_direcciones"] = 2
-    data["version_sac_activos"] = 0
-    return _completar_sac(data) if incluir_sac else data
+    data["version_usuarios_tc1"] = 1
+    data["fuente_usuarios"] = "TC1_BRAE"
+    return data
 
 def _guardar_cache(archivo, data):
     with _CIRCUITOS_CACHE_LOCK:
@@ -149,7 +158,14 @@ def api_cargar_kmz(request):
 def api_circuitos(request):
     sub=request.GET.get("subestacion","").strip().upper()
     if not sub:return JsonResponse({"error":"Debe seleccionar una subestación."},status=400)
-    try:return JsonResponse({"subestacion":sub,"circuitos":GTechService().listar_circuitos(sub)})
+    try:
+        circuitos=GTechService().listar_circuitos(sub)
+        fids=[int(x["g3e_fid"]) for x in circuitos if x.get("g3e_fid") is not None]
+        funciones={int(x.gtech_fid):x.funcion_electrica for x in AsignacionMedidaEnergia.objects.filter(tipo_objeto=AsignacionMedidaEnergia.TIPO_ALIMENTADOR,gtech_fid__in=fids)}
+        for circuito in circuitos:
+            funcion=funciones.get(int(circuito["g3e_fid"]), "")
+            _aplicar_funcion_electrica(circuito,funcion)
+        return JsonResponse({"subestacion":sub,"circuitos":circuitos})
     except Exception as exc:return JsonResponse({"error":str(exc)},status=500)
 
 @require_GET
@@ -161,45 +177,35 @@ def api_trazado(request):
     try:
         archivo=_archivo_circuito(sub,fid)
         actualizar=request.GET.get("actualizar","").lower() in {"1","true","si","sí"}
-        rapido=request.GET.get("rapido","").lower() in {"1","true","si","sí"}
-        completar_sac=request.GET.get("completar_sac","").lower() in {"1","true","si","sí"}
         descarga_automatica=False
         if not archivo.exists() and not actualizar:
-            # Un JSON ausente se recupera automáticamente: primero se guarda
-            # la topología y SAC se completa después sin bloquear el mapa.
             actualizar=True
-            rapido=not completar_sac
-            completar_sac=False
             descarga_automatica=True
-        if completar_sac:
-            with _CIRCUITOS_CACHE_LOCK:
-                with archivo.open("r",encoding="utf-8") as entrada:data=json.load(entrada)
-            if data.get("version_sac_activos") != 1:
-                _completar_sac(data)
-                _guardar_cache(archivo,data)
-            data["origen_datos"]="cache_sac"
-        elif archivo.exists() and not actualizar:
+        if archivo.exists() and not actualizar:
             with _CIRCUITOS_CACHE_LOCK:
                 with archivo.open("r",encoding="utf-8") as entrada:data=json.load(entrada)
             requiere_calibres=any(e.get("g3e_fno")==19000 and "calibre" not in e for e in data.get("elementos",[]))
             requiere_direcciones=data.get("version_direcciones") != 2
-            requiere_sac_activos=data.get("version_sac_activos") != 1
-            requiere_postes=data.get("version_postes") != 1
-            requiere_topologia=data.get("version_topologia") != 3
-            if requiere_calibres or requiere_direcciones or requiere_postes or requiere_topologia:
+            requiere_usuarios_tc1=data.get("version_usuarios_tc1") != 1
+            requiere_postes=data.get("version_postes") != 3
+            requiere_topologia=data.get("version_topologia") != 7
+            if requiere_calibres or requiere_direcciones or requiere_usuarios_tc1 or requiere_postes or requiere_topologia:
                 data=_consultar_trazado(sub,fid,force_refresh=True)
                 _guardar_cache(archivo,data)
                 data["origen_datos"]="consulta"
             else:data["origen_datos"]="cache"
         else:
-            data=_consultar_trazado(sub,fid,force_refresh=actualizar,incluir_sac=not rapido)
+            data=_consultar_trazado(sub,fid,force_refresh=actualizar)
             _guardar_cache(archivo,data)
             data["origen_datos"]="consulta"
         _aplicar_ampacidades(data)
+        aplicar_consumos_transformadores(data)
         data["descarga_automatica"]=descarga_automatica
+        data["relaciones_transformacion"]=_relaciones_transformacion_subestacion(sub)
         operaciones=request.session.get("operaciones_345",{})
         fids=[int(e["g3e_fid"]) for e in data["elementos"] if e.get("g3e_fid") is not None]
         vigentes={x.g3e_fid:x for x in EstadoOperativoVigente.objects.filter(g3e_fid__in=fids,habilitado=True,fecha_inicio__lte=timezone.localdate())}
+        funciones={int(x.gtech_fid):x.funcion_electrica for x in AsignacionMedidaEnergia.objects.filter(tipo_objeto=AsignacionMedidaEnergia.TIPO_ALIMENTADOR,gtech_fid__in=fids)}
         for e in data["elementos"]:
             # El JSON conserva la topologia, no una fotografia operativa antigua.
             # La posicion normal es el estado estable; las maniobras de la sesion
@@ -210,6 +216,8 @@ def api_trazado(request):
                 e["estado_operativo_vigente"]=condicion.estado
                 e["condicion_operativa_vigente"]={"fecha_inicio":condicion.fecha_inicio.isoformat(),"observacion":condicion.observacion,"codigo":condicion.codigo}
             e["estado_simulado"]=operaciones.get(str(e["g3e_fid"]),base)
+            funcion=funciones.get(int(e["g3e_fid"]), "")
+            _aplicar_funcion_electrica(e,funcion)
         return JsonResponse(data)
     except Exception as exc:return JsonResponse({"error":str(exc)},status=500)
 
@@ -269,7 +277,7 @@ def api_exportar_maniobras_xlsx(request):
         data=json.loads(request.body);secciones=data.get("secciones") or []
         if not secciones:raise ValueError("No hay maniobras para exportar.")
         libro=Workbook();libro.remove(libro.active);usados=set()
-        encabezados=["#","Fecha","Subestación","Celda","Dispositivo","Estado","Dirección aproximada","Maniobra"]
+        encabezados=["#","Fecha","Subestación","Celda","Dispositivo","Tipo","Estado","Nivel kV","FID GTECH","Dirección aproximada","Maniobra","Motivo técnico"]
         for indice,seccion in enumerate(secciones,1):
             base="".join(c for c in str(seccion.get("titulo") or f"Protocolo {indice}") if c not in "[]:*?/\\")[:31] or f"Protocolo {indice}";titulo=base;n=2
             while titulo in usados:
@@ -278,11 +286,48 @@ def api_exportar_maniobras_xlsx(request):
             for celda in hoja[1]:celda.font=Font(bold=True,color="FFFFFF");celda.fill=PatternFill("solid",fgColor="173A58")
             for fila in seccion.get("filas") or []:hoja.append(list(fila)[:len(encabezados)])
             hoja.freeze_panes="A2";hoja.auto_filter.ref=hoja.dimensions
-            for columna,ancho in zip(hoja.columns,[7,14,24,20,28,16,42,90]):
+            for columna,ancho in zip(hoja.columns,[7,14,24,20,28,24,16,12,16,42,90,55]):
                 hoja.column_dimensions[columna[0].column_letter].width=ancho
                 for celda in columna:celda.alignment=Alignment(vertical="top",wrap_text=True)
         salida=BytesIO();libro.save(salida)
         nombre="".join(c for c in str(data.get("nombre") or "maniobras-cdym") if c.isalnum() or c in "-_") or "maniobras-cdym"
+        respuesta=HttpResponse(salida.getvalue(),content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        respuesta["Content-Disposition"]=f'attachment; filename="{nombre}.xlsx"'
+        return respuesta
+    except Exception as exc:return JsonResponse({"error":str(exc)},status=400)
+
+
+@require_POST
+def api_exportar_usuarios_xlsx(request):
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+        data=json.loads(request.body or "{}")
+        usuarios=data.get("usuarios") or []
+        if not usuarios:raise ValueError("No hay usuarios desconectados para exportar.")
+        libro=Workbook();hoja=libro.active;hoja.title="Usuarios desconectados"
+        encabezados=["Numero de transformador","Nodo de transformador","Fases","Circuito","Feha/Hora Desenergizacón","Feha/Hora Energizacón","Duración","Razón social","Telefono","Dirección","Municipio","CUD","No. de instalación","NIU","Estado Comercial","Grandes Clientes","Clientes Especiales","Soporte de Vida (Salud)","Cliente Generación","Prepago","Electrodependiente","Antenas","Tarifa","Comercializador","Barrio","Vereda","Corregimiento","Area de Responsabilidad","Codigo Frontera","Localización"]
+        hoja.append(encabezados)
+        for celda in hoja[1]:celda.font=Font(bold=True,color="FFFFFF");celda.fill=PatternFill("solid",fgColor="173A58")
+        vistos=set()
+        for usuario in usuarios:
+            niu=str(usuario.get("niu") or "").strip()
+            if not niu or niu in vistos:continue
+            vistos.add(niu)
+            hoja.append([str(usuario.get(campo) or "") for campo in (
+                "numero_transformador","nodo_transformador","fases","circuito","fecha_hora_desenergizacion","fecha_hora_energizacion","duracion",
+                "razon_social","telefono","direccion","municipio","cud","numero_instalacion","niu","estado_comercial","grandes_clientes",
+                "clientes_especiales","soporte_vida","cliente_generacion","prepago","electrodependiente","antenas","tarifa","comercializador",
+                "barrio","vereda","corregimiento","area_responsabilidad","codigo_frontera","localizacion",
+            )])
+        if not vistos:raise ValueError("Los usuarios desconectados no tienen NIU para exportar.")
+        hoja.freeze_panes="A2";hoja.auto_filter.ref=hoja.dimensions
+        for columna in hoja.columns:
+            ancho=max(12,min(38,max(len(str(celda.value or "")) for celda in columna)+2))
+            hoja.column_dimensions[columna[0].column_letter].width=ancho
+            for celda in columna:celda.alignment=Alignment(vertical="top",wrap_text=True)
+        salida=BytesIO();libro.save(salida)
+        nombre=str(data.get("nombre") or "usuarios-desconectados-cdym").strip().replace("/","-").replace("\\","-")
         respuesta=HttpResponse(salida.getvalue(),content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
         respuesta["Content-Disposition"]=f'attachment; filename="{nombre}.xlsx"'
         return respuesta

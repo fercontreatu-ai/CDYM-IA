@@ -88,14 +88,26 @@ function serializarPlaneacionPostoperativa() {
 async function guardarArchivoPostoperativo() {
   if (!ultimos.length) return alert("Primero dibuje al menos un circuito.");
   const centro = map.getCenter();
+  const maniobrasEfectivas = (maniobrasGrabadas.length ? maniobrasGrabadas : ultimoProtocoloClasificado).map(item => ({...item, elemento: item.elemento ? {g3e_fid: item.elemento.g3e_fid} : null}));
+  const afectaciones = [];
+  for (const elemento of ultimoFlujo?.elementos?.values?.() || []) {
+    if (Number(elemento.g3e_fno) !== 20400) continue;
+    const fuentes = ultimoFlujo.procedencia.get(String(elemento.g3e_fid)) || new Set();
+    if (fuentes.size) continue;
+    const usuarios = usuariosActivos(elemento);
+    afectaciones.push({g3e_fid: elemento.g3e_fid, codigo: elemento.codigo_operacion || elemento.codigo || String(elemento.g3e_fid), circuito: elemento.circuito || "", subestacion: elemento.subestacion || "", usuarios: usuarios.size, nius: [...usuarios.keys()].map(String), consumo_kwh: energiaUsuarios(usuarios)});
+  }
+  const diasSimulacion = serializarFechasAnalisis().map(([clave, valor]) => ({clave, fecha: valor?.fecha || "", dias_evaluados: Number(valor?.seleccion_historica?.dias_evaluados || 0), descartados_delta: Number(valor?.seleccion_historica?.descartados_delta || 0)}));
   const archivo = {
     formato: "CDYM-DESCONEXION",
-    version: 6,
+    version: 7,
     guardado_en: new Date().toISOString(),
     circuitos: [...seleccionados.values()].map(copiaSerializable),
     estados: estadosFisicosActuales(),
     virtuales: serializarVirtuales(),
     maniobras_manuales: copiaSerializable(maniobrasGrabadas),
+    maniobras: {origen: maniobrasGrabadas.length ? "MANUAL" : "IA", items: copiaSerializable(maniobrasEfectivas)},
+    afectaciones: copiaSerializable(afectaciones),
     capas_visibles: copiaSerializable(visibilidadMapa),
     analisis: {
       fecha: measureDate?.value || "",
@@ -109,6 +121,7 @@ async function guardarArchivoPostoperativo() {
       ejecutado: Boolean(fechaCorrientesAnalisis),
       fecha_calculada: fechaCorrientesAnalisis,
       fechas_maximas: serializarFechasAnalisis(),
+      dias_simulacion: diasSimulacion,
       planeacion_circuitos: serializarPlaneacionPostoperativa(),
     },
     vista: {lat: centro.lat, lng: centro.lng, zoom: map.getZoom()},
@@ -141,6 +154,7 @@ window.guardarDesconexionArchivo = guardarArchivoPostoperativo;
 
 const abrirDesconexionBasePost = abrirDesconexionGuardada;
 abrirDesconexionGuardada = async function(archivo) {
+  ultimoProtocoloClasificado = [];
   fechasPlaneacionPostoperativa.clear();
   escenariosProgramadosPostoperativos.clear();
   for (const item of archivo?.analisis?.planeacion_circuitos || []) {
@@ -150,14 +164,25 @@ abrirDesconexionGuardada = async function(archivo) {
     }
   }
   const tieneEscenariosGuardados = (archivo?.analisis?.planeacion_circuitos || []).some(item => item?.escenario_programado);
-  const archivoRestauracion = archivo?.analisis
-    ? {...archivo, analisis: {...archivo.analisis, ejecutado: false}}
-    : archivo;
+  const archivoRestauracion = archivo;
   await abrirDesconexionBasePost(archivoRestauracion);
+  if (archivo?.maniobras?.origen === "MANUAL") {
+    maniobrasGrabadas = copiaSerializable(archivo.maniobras.items || archivo.maniobras_manuales || []);
+    ultimoProtocoloClasificado = [];
+  } else if (Array.isArray(archivo?.maniobras?.items)) {
+    maniobrasGrabadas = [];
+    ultimoProtocoloClasificado = archivo.maniobras.items.map(item => {
+      const fid = String(item.fid || item.fidReal || item.elemento?.g3e_fid || item.id || "");
+      return {...copiaSerializable(item), elemento: ultimoFlujo?.elementos?.get(fid) || null};
+    });
+  }
+  actualizarBotonGrabacion();
   actualizarEstadoPostoperativo();
-  setProceso(tieneEscenariosGuardados
-    ? "Desconexión abierta con el análisis programado guardado; no se repitieron consultas ni cálculos."
-    : "Desconexión abierta sin recalcular. Este archivo antiguo requiere pulsar Recalcular todo para crear el escenario comparativo.");
+  setProceso(archivo?.analisis?.ejecutado
+    ? "Desconexión abierta y analizada nuevamente con los mismos días y parámetros guardados."
+    : tieneEscenariosGuardados
+      ? "Desconexión abierta con el escenario programado guardado."
+      : "Desconexión abierta. Este archivo no contenía un análisis ejecutado.");
 };
 
 function maximoSeriePost(datos) {
